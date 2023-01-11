@@ -24,4 +24,4 @@ class Order(BaseModel):
     item: str
     quantity: int
     order_date: date = date.today()
-    order_time: time = time.now()
+    delivery_date = date.today() + 15

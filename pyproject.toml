@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "cognizant-prodigi-22"
 version = "0.1.0"
-description = ""
+description = "A project for Cognizant Hackathon"
 authors = ["Siddhesh Agarwal <siddhesh.agarwal@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.9.7 || >3.9.7,<4.0"
 fastapi = "^0.88.0"
 uvicorn = "^0.20.0"
 pydantic = {extras = ["email"], version = "^1.10.2"}
