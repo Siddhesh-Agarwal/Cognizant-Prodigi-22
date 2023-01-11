@@ -8,13 +8,9 @@
 
 1. to run the API server, run the following command in the root directory
 
-```bash
-cd API
-```
-
-``` bash
-uvicorn main:app
-```
+    ``` bash
+    python api/main.py
+    ```
 
 ## Tech Stack
 
