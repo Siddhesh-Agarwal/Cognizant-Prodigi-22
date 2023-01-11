@@ -88,17 +88,17 @@ async def get_feedbacks_by_category(category: CategoryEnum):
     # Connect to database
     conn = sqlite3.connect("./db/feedbacks.db")
     # create a cursor
-    c = conn.cursor()
+    curr = conn.cursor()
     # create a table if it doesn't exist
-    c.execute(
+    curr.execute(
         "CREATE TABLE IF NOT EXISTS feedbacks (name TEXT, review TEXT, email TEXT, review_date TEXT)"
     )
     # execute an SQL command
-    c.execute(
+    curr.execute(
         "SELECT * FROM feedbacks WHERE category = :category", {"category": category}
     )
     # fetch all the feedbacks
-    feedbacks = c.fetchall()
+    feedbacks = curr.fetchall()
     # close the connection
     conn.close()
     # return the feedbacks
@@ -110,9 +110,9 @@ async def add_review(review: Review):
     # Connect to database
     conn = sqlite3.connect("./db/feedbacks.db")
     # create a cursor
-    c = conn.cursor()
+    curr = conn.cursor()
     # create a table if it doesn't exist
-    c.execute(
+    curr.execute(
         "CREATE TABLE IF NOT EXISTS feedbacks (name TEXT, review TEXT, email TEXT, review_date TEXT)"
     )
     # details
@@ -123,7 +123,7 @@ async def add_review(review: Review):
         "review_date": review.review_date,
     }
     # execute an SQL command
-    c.execute(
+    curr.execute(
         "INSERT INTO feedbacks VALUES (:name, :review, :email, :review_date)", details
     )
     # commit the changes
