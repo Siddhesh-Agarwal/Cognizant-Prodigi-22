@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 
-from API.classes import CategoryEnum, Order, Review
+from classes import CategoryEnum, Order, Review
 
 app = FastAPI()
 
@@ -139,4 +139,4 @@ async def http_exception_handler(request, exc):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, port=8080)
+    uvicorn.run(app, port=8000)

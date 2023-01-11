@@ -207,4 +207,5 @@ sketch
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,react,redis
+### Database ###
+*.db
