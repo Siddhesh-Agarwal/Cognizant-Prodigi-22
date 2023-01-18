@@ -17,7 +17,7 @@ async def get_orders():
     curr = conn.cursor()
     # create a table if it doesn't exist
     curr.execute(
-        "CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, item TEXT, quantity INTEGER, order_date TEXT, order_time TEXT)"
+        "CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, item TEXT, quantity INTEGER, timestamp TEXT)"
     )
     # execute an SQL command
     curr.execute("SELECT * FROM orders")
@@ -41,12 +41,11 @@ async def add_order(order: Order):
         "email": order.email,
         "item": order.item,
         "quantity": order.quantity,
-        "order_date": order.order_date,
-        "order_time": order.order_time,
+        "timestamp": order.timestamp,
     }
     # execute an SQL command
     curr.execute(
-        "INSERT INTO orders (name, email, item, quantity, order_date, order_time) VALUES (:name, :email, :item, :quantity, :order_date, :order_time)",
+        "INSERT INTO orders (name, email, item, quantity, timestamp) VALUES (:name, :email, :item, :quantity, :timestamp)",
         details,
     )
     # commit the changes
@@ -142,17 +141,17 @@ def predict_order(month: int):
         c = conn.cursor()
 
         # Retrieve the order data
-        c.execute("SELECT order_date, quantity FROM orders")
+        c.execute("SELECT timestamp, quantity FROM orders")
         data = c.fetchall()
 
         # Convert the data to a Pandas DataFrame
-        df = pd.DataFrame(data, columns=["order_date", "quantity"])
+        df = pd.DataFrame(data, columns=["timestamp", "quantity"])
 
-        # Convert the order_date column to datetime
-        df["order_date"] = pd.to_datetime(df["order_date"])
+        # Convert the timestamp column to datetime
+        df["timestamp"] = pd.to_datetime(df["timestamp"])
 
-        # Extract the month from the order_date
-        df["month"] = df["order_date"].dt.month
+        # Extract the month from the timestamp
+        df["month"] = df["timestamp"].dt.month
 
         # Create a linear regression model
         reg = LinearRegression()
