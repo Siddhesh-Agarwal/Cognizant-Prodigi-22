@@ -1,10 +1,10 @@
 import sqlite3
 
+import pandas as pd
 import uvicorn
+from classes import CategoryEnum, Order, Review
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
-
-from classes import CategoryEnum, Order, Review
 
 app = FastAPI()
 
@@ -130,6 +130,45 @@ async def add_review(review: Review):
     conn.commit()
     # close the connection
     conn.close()
+
+
+@app.get("/predict")
+def predict_order(month: int):
+    if month in range(1, 13):
+        from sklearn.linear_model import LinearRegression
+
+        # Connect to the database
+        conn = sqlite3.connect("orders.db")
+        c = conn.cursor()
+
+        # Retrieve the order data
+        c.execute("SELECT order_date, quantity FROM orders")
+        data = c.fetchall()
+
+        # Convert the data to a Pandas DataFrame
+        df = pd.DataFrame(data, columns=["order_date", "quantity"])
+
+        # Convert the order_date column to datetime
+        df["order_date"] = pd.to_datetime(df["order_date"])
+
+        # Extract the month from the order_date
+        df["month"] = df["order_date"].dt.month
+
+        # Create a linear regression model
+        reg = LinearRegression()
+
+        # Fit the model using the month and quantity data
+        X = df[["month"]]
+        y = df["quantity"]
+        reg.fit(X, y)
+
+        # Use the model to predict the quantity of orders for the given month
+        prediction = reg.predict([[month]])
+
+        return prediction
+    else:
+        # Raise an HTTPException with a 422 status code
+        raise HTTPException(status_code=422, detail="Invalid month")
 
 
 # HTTP Exception
