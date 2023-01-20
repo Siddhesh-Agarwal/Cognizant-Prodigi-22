@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+
+.content {
+  width: calc(100% - 50px);
+  margin-left: auto;
+  padding: 15px;
+  height: 100%;
+  word-break: break-word;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  background-color: #2563EB;
+  transition: width 0.3s ease;
+  border-right: 1px #2563EB solid;
+  padding-top: 15px;
+}
+
+.sidebar .sidebar-position {
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  text-align: left;
+}
+
+.sidebar .sidebar-position:hover {
+  background-color: #2563EB;
+  border-right: 5px white solid;
+}
+
+.sidebar svg {
+  color: white;
+  min-width: 25px;
+}
+
+.sidebar span {
+  width: 0;
+  height: 0;
+  padding: 0 15px;
+  transition: width 0.3s ease;
+  color: white;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar--open {
+  width: 250px;
+  transition: width 0.3s ease;
+}
+
+.sidebar--open .sidebar-position span {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.trigger {
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 12px 15px;
+}
