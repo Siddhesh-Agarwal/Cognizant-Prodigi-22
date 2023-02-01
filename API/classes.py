@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date
 from enum import Enum
 
 from pydantic import BaseModel, EmailStr
@@ -23,5 +23,5 @@ class Order(BaseModel):
     email: EmailStr
     item: str
     quantity: int
-    timestamp: date = date.today()
-    delivery_date = date.today() + timedelta(days=15)
+    timestamp: date
+    delivery_date: date

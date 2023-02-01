@@ -42,10 +42,11 @@ async def add_order(order: Order):
         "item": order.item,
         "quantity": order.quantity,
         "timestamp": order.timestamp,
+        "delivery_date": order.delivery_date,
     }
     # execute an SQL command
     curr.execute(
-        "INSERT INTO orders (name, email, item, quantity, timestamp) VALUES (:name, :email, :item, :quantity, :timestamp)",
+        "INSERT INTO orders (name, email, item, quantity, timestamp, delivery_date) VALUES (:name, :email, :item, :quantity, :timestamp, :delivery_date)",
         details,
     )
     # commit the changes
