@@ -9,7 +9,7 @@ function MyOrders() {
     const [account, setAccount] = useState(null);
     const [balance, setBalance] = useState("");
     const [conn, setConn] = useState(false);
-    
+
     const [contract, setContract] = useState(null);
     const [order, setOrder] = useState(null);
     const [pro, setPro] = useState(false);
@@ -42,7 +42,7 @@ function MyOrders() {
         // await contract.makeProducer();
         // await contract.makeMiddleMan();
     };
-    
+
     const time = () => {
         let date = new Date();
         let time = `${date.getDate()}/${date.getMonth() + 1
@@ -67,7 +67,7 @@ function MyOrders() {
         setPro(await contract.Prod());
         setMid(await contract.Mid());
     };
- 
+
     const showOrder = async () => {
         const orderStr = (await contract.Orders(1)).toString();
         const order = orderStr.split(",");
@@ -79,55 +79,55 @@ function MyOrders() {
             <div className="page">
                 <Sidebar />
                 <div class="flex items-center justify-center pt-4 ">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path>
-        </svg>
-        <h1 class="text-3xl font-bold text-blue-600 tracking-wider">ChainHive</h1>
-      </div>
-      <div class="flex items-center justify-center mt-4">
-        <div class="pt-2 border-2 border-blue-600 w-96 p-12 lg:w-1/2">
-        <h1 class="font-bold text-2xl text-blue-600">Track Order</h1>
-                <button onClick={web3} class="mt-1 text-white  font-bold bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                    {conn ? "Change Account" : "Connect Metamask"}
-                    </button>
-                <button onClick={checkAccountType} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Account Type</button>
-                <button onClick={showOrder} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Check Order</button>
-
-                {/* <button onClick={checkAccountType}>onClick={checkAccountType}</button> */}
-                {/* <button onClick={showOrder}>Check Order</button> */}
-
-                <h1 class="font-bold text-lg mt-1">Account Address : 
-                <div class="bg-white text-black text-xs lg:text-lg lg:rounded-lg lg:ring-blue-500 lg:border-2 border-blue-500 block w-full h-12 p-2 mb-2">
-                {account}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path>
+                    </svg>
+                    <h1 class="text-3xl font-bold text-blue-600 tracking-wider">ChainHive</h1>
                 </div>
-                </h1>
-                <h1 class="font-bold text-lg">Balance :
-                <div class="bg-white text-black text-lg lg:rounded-lg lg:ring-blue-500 lg:border-2 border-blue-500 block w-full h-full p-2 mb-2">
-                 {balance} ETH
-                </div>
-                 </h1>
-                <h3 class="font-bold text-lg ">Producer : 
-                <button class="ml-8 text-white bg-blue-700 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 focus:outline-none dark:focus:ring-blue-800">
-                {pro ? "Yes" : "No"}
-                    </button>
-                </h3>
-                <h3 class="font-bold text-lg">MiddleMan :
-                <button class="ml-4 text-white bg-blue-700 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 focus:outline-none dark:focus:ring-blue-800">
-                 {mid ? "Yes" : "No"}
-                    </button>
-                 </h3>
-                <button onClick={place} class="mt-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Place Order</button>
-                <button onClick={pass} class="mt-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Pass Order</button>
-                <button onClick={delivered} class="mt-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Order Delivered</button>
+                <div class="flex items-center justify-center mt-4">
+                    <div class="pt-2 border-2 border-blue-600 w-96 p-12 lg:w-1/2">
+                        <h1 class="font-bold text-2xl text-blue-600">Track Order</h1>
+                        <button onClick={web3} class="mt-1 text-white  font-bold bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            {conn ? "Change Account" : "Connect Metamask"}
+                        </button>
+                        <button onClick={checkAccountType} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Account Type</button>
+                        <button onClick={showOrder} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Check Order</button>
 
-                {/* <button onClick={place}>Place Order</button> */}
-                {/* <button onClick={pass}>Pass Order</button>
+                        {/* <button onClick={checkAccountType}>onClick={checkAccountType}</button> */}
+                        {/* <button onClick={showOrder}>Check Order</button> */}
+
+                        <h1 class="font-bold text-lg mt-1">Account Address :
+                            <div class="bg-white text-black text-xs lg:text-lg lg:rounded-lg lg:ring-blue-500 lg:border-2 border-blue-500 block w-full h-12 p-2 mb-2">
+                                {account}
+                            </div>
+                        </h1>
+                        <h1 class="font-bold text-lg">Balance :
+                            <div class="bg-white text-black text-lg lg:rounded-lg lg:ring-blue-500 lg:border-2 border-blue-500 block w-full h-full p-2 mb-2">
+                                {balance} ETH
+                            </div>
+                        </h1>
+                        <h3 class="font-bold text-lg ">Producer :
+                            <button class="ml-8 text-white bg-blue-700 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 focus:outline-none dark:focus:ring-blue-800">
+                                {pro ? "Yes" : "No"}
+                            </button>
+                        </h3>
+                        <h3 class="font-bold text-lg">MiddleMan :
+                            <button class="ml-4 text-white bg-blue-700 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 focus:outline-none dark:focus:ring-blue-800">
+                                {mid ? "Yes" : "No"}
+                            </button>
+                        </h3>
+                        <button onClick={place} class="mt-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Place Order</button>
+                        <button onClick={pass} class="mt-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Pass Order</button>
+                        <button onClick={delivered} class="mt-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Order Delivered</button>
+
+                        {/* <button onClick={place}>Place Order</button> */}
+                        {/* <button onClick={pass}>Pass Order</button>
                 <button onClick={delivered}>Order delivered</button> */}
 
-                <br />
-                <div>{order === null ? <></> : <OrderDetails order={order} />}</div>
-            </div>
-            </div>
+                        <br />
+                        <div>{order === null ? <></> : <OrderDetails order={order} />}</div>
+                    </div>
+                </div>
             </div>
         </div></>
     );

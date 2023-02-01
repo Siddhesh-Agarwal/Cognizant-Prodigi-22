@@ -25,7 +25,6 @@ function App() {
         setBalance(ethers.utils.formatEther(bal));
 
         setConn(true);
-
         loadContracts(signer);
     };
 
@@ -33,8 +32,6 @@ function App() {
         const Test = new ethers.Contract(TestAddress.address, TestAbi.abi, signer);
         setTest(Test);
         console.log(test);
-        // await test.makeProducer();
-        // await test.makeMiddleMan();
     };
 
     const time = () => {
