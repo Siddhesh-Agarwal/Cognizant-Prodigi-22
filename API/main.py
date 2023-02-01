@@ -10,7 +10,7 @@ app = FastAPI()
 
 
 @app.get("/orders/get")
-async def get_orders():
+def get_orders():
     # Connect to database
     conn = sqlite3.connect("./db/orders.db")
     # create a cursor
@@ -57,7 +57,7 @@ async def add_order(order: Order):
 
 
 @app.get("/feedbacks/get")
-async def get_feedbacks():
+def get_feedbacks():
     """
     Get all the feedbacks from the databases
     """
@@ -80,7 +80,7 @@ async def get_feedbacks():
 
 
 @app.get("/feedbacks/get/{category}")
-async def get_feedbacks_by_category(category: CategoryEnum):
+def get_feedbacks_by_category(category: CategoryEnum):
     """
     Get all the feedbacks from the databases
     """
@@ -172,7 +172,7 @@ def predict_order(month: int):
 
 # HTTP Exception
 @app.exception_handler(HTTPException)
-async def http_exception_handler(request, exc):
+def http_exception_handler(request, exc):
     return JSONResponse(status_code=exc.status_code, content={"message": exc.detail})
 
 
