@@ -14,8 +14,8 @@ class Review(BaseModel):
     name: str
     review: str
     email: EmailStr
-    category: CategoryEnum = CategoryEnum.category_1
-    review_date: date = date.today()
+    category: CategoryEnum
+    review_date: date
 
 
 class Order(BaseModel):
