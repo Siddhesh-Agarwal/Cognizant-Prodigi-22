@@ -12,6 +12,8 @@ uvicorn = "^0.20.0"
 pydantic = {extras = ["email"], version = "^1.10.2"}
 pandas = "^1.5.2"
 scikit-learn = "^1.2.0"
+streamlit = "^1.17.0"
+plotly = "^5.13.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.12.0"
